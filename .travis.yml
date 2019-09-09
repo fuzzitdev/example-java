@@ -1,0 +1,22 @@
+dist: bionic
+language: java
+services:
+  - docker
+
+env:
+  global:
+    # This is FUZZIT_API_KEY. see https://docs.travis-ci.com/user/environment-variables/#encrypting-environment-variables for how to create secrets in Travis. you can also create this environment variable in travis dashboard
+    secure: "vuAoiozUO/335kehSHLR/biDYJnPgB0setWuk2GHxCL9cFsbllBllB2TRgY+LqXnb8jV5cK74Xd6nw/nJytjJeeNDYB7MoCPBkQ3uFdzx79KV4OTHy03YDoW4hNp/49N6OwjEoQhdQzI+nuHyIYKmlmvW6r0M5tlO/RMsuD4LDA8PRLcPG3MTZ1/XQTlpX528YpcO0ADixJs8wvxrTpC06LTo4ieOZQtsYuxJJaVHs14no+qmvF90sLzG2A+SPgdkFmxaUbVp11tswuxo05DeA7epveYsLG1CT12ZLWPBG5FPFVJaL47bz66SciTQKZP+z6SHtIp5Q+bI91IwitOC5r69OlcpcUXKlmQ3GDlP5RRMVef4ZFRJGGEaWU9EXUMD11SbH8RGkf9PMCE8tc/TlWm+MAuww1hVLWW5dM4ttLb9jOBt4OvsiSC+mIEVDi2k9964mZ69YeiYKjPtf5vpx76uS8gR2R6LhsQruPKEwoy0A2/a3L33RtlXBlKURt5YJQuV535KjsVZx5aQUEkDcbNuQHO0HrmrS/rXWUWHEu4xb33nqFypCaB7qgaID2aqKa1TGv6g3aWRmkpqA+ohNSJ80w8EMDBhWwxvHqV2jS4x+XQDaaGvz7Bi3H56keYk4HXhT4Ex8/8jUizzs8Yr5j+glwRhsFrs8WKehpVYt0="
+
+jobs:
+  include:
+    - stage: Build, Unit-Tests & Fuzz-Tests
+      go: 1.12.x
+      script:
+        - ./fuzzit.sh fuzzing
+
+#    - stage: Fuzzit (Fuzzing)
+#      if: branch = master AND type IN (push)
+#      go: 1.12.x
+#      script:
+#        - ./fuzzit.sh fuzzing
