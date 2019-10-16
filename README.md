@@ -76,6 +76,7 @@ the coverage feedback
 
 ```bash
 git clone https://github.com/fuzzitdev/example-java
+cd example-java
 docker run -v `pwd`:/app -it maven:3.6.1-jdk-12 /bin/bash
 cd /app
 # Change to maven repo once 1.3 is out
